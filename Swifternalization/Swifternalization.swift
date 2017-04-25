@@ -40,8 +40,21 @@ final public class Swifternalization {
      It should be considered configured after `load(bundle:)` method is called.
      */
     private var configured = false
+
+    /**
+     Private class variable used to set the current language
+    */
+    static private var currentLanguage: CountryCode?
     
     // MARK: Public Methods
+    /**
+    Set current language variable
+     */
+    static public var setCurrentLanguage: String? {
+        didSet {
+            currentLanguage = setCurrentLanguage
+        }
+    }
     
     /**
     Call the method to configure Swifternalization.
@@ -191,7 +204,12 @@ final public class Swifternalization {
     Get preferred language of user's device.
     */
     private func getPreferredLanguage(_ bundle: Bundle) -> CountryCode {
-        // Get preferred language, the one which is set on user's device
-        return bundle.preferredLocalizations.first! as CountryCode
+        // Check if current language is nil
+        guard currentLanguage else {
+            // Get preferred language, the one which is set on user's device
+            return bundle.preferredLocalizations.first! as CountryCode
+        }
+        // Return language set by user
+        return currentLanguage
     }
 }
