@@ -205,11 +205,11 @@ final public class Swifternalization {
     */
     private func getPreferredLanguage(_ bundle: Bundle) -> CountryCode {
         // Check if current language is nil
-        guard currentLanguage else {
+        guard Swifternalization.currentLanguage != nil else {
             // Get preferred language, the one which is set on user's device
             return bundle.preferredLocalizations.first! as CountryCode
         }
         // Return language set by user
-        return currentLanguage
+        return Swifternalization.currentLanguage!
     }
 }
