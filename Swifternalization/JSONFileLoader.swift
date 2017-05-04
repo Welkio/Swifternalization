@@ -41,6 +41,12 @@ final class JSONFileLoader {
     :returns: JSON or nil if file cannot be loaded.
     */
     private class func load(_ fileName: String, bundle: Bundle) -> JSONDictionary? {
+        let path = NSTemporaryDirectory().appending("\(fileName).json")
+        let fileURL = URL(fileURLWithPath: path)
+        if FileManager.default.fileExists(atPath: path) {
+            return load(fileURL)
+        }
+
         if let fileURL = bundle.url(forResource: fileName, withExtension: "json") {
             return load(fileURL)
         }
