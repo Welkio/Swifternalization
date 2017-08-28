@@ -40,7 +40,7 @@ class SharedExpressionsProcessor {
             expression.json.
     :returns: array of shared expressions for Base and preferred language.
     */
-    class func processSharedExpression(_ preferedLanguage: CountryCode, preferedLanguageExpressions: [SharedExpression], baseLanguageExpressions: [SharedExpression]) -> [SharedExpression] {
+    class func processSharedExpression(_ preferedLanguage: CountryCode) -> [SharedExpression] {
         /*
         Get unique base expressions that are not presented in prefered language
         expressions. Those from base will be used in a case when programmer 
@@ -52,16 +52,11 @@ class SharedExpressionsProcessor {
         and this is good as base expression.
         2. He forgot to define such expression for prefered language.
         */
-        let uniqueBaseExpressions = baseLanguageExpressions <! preferedLanguageExpressions
-        
-        // Expressions from json files.
-        let loadedExpressions = uniqueBaseExpressions + preferedLanguageExpressions
-        
+
         // Load prefered language nad base built-in expressions. Get unique.
         let prefBuiltInExpressions = loadBuiltInExpressions(preferedLanguage)
         let baseBuiltInExpressions = SharedBaseExpression.allExpressions()
         let uniqueBaseBuiltInExpressions = baseBuiltInExpressions <! prefBuiltInExpressions
-        
         // Unique built-in expressions made of base + prefered language.
         let builtInExpressions = uniqueBaseBuiltInExpressions + prefBuiltInExpressions
         
@@ -69,7 +64,7 @@ class SharedExpressionsProcessor {
         To get it done we must get only unique built-in expressions that are not 
         in loaded expressions.
         */
-        return loadedExpressions + (builtInExpressions <! loadedExpressions)
+        return builtInExpressions
     }
     
     /**

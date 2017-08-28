@@ -64,9 +64,7 @@ class LoadedTranslationsProcessorTests: XCTestCase {
     }
     
     func testShouldProcessTranslations() {
-        let baseExpressions = SharedExpressionsLoader.loadExpressions(_baseExpressions())
-        let enExpressions = SharedExpressionsLoader.loadExpressions(_enExpressions())
-        let expressions = SharedExpressionsProcessor.processSharedExpression("en", preferedLanguageExpressions: enExpressions, baseLanguageExpressions: baseExpressions)
+        let expressions = SharedExpressionsProcessor.processSharedExpression("en")
         
         let baseTranslations = TranslationsLoader.loadTranslations(_baseTranslations())
         let enTranslations = TranslationsLoader.loadTranslations(_enTranslations())
