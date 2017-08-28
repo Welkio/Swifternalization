@@ -182,9 +182,7 @@ final public class Swifternalization {
         own things inside like check if expression is unique or overriding base 
         expressions by prefered language ones if there is such expression.
         */
-        let baseExpressions = SharedExpressionsLoader.loadExpressions(JSONFileLoader.loadExpressions(base, bundle: bundle))
-        let languageExpressions = SharedExpressionsLoader.loadExpressions(JSONFileLoader.loadExpressions(language, bundle: bundle))
-        let expressions = SharedExpressionsProcessor.processSharedExpression(language, preferedLanguageExpressions: languageExpressions, baseLanguageExpressions: baseExpressions)
+        let expressions = SharedExpressionsProcessor.processSharedExpression(language)
         
         /*
         Load base and prefered language translations from proper language files 
