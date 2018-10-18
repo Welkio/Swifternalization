@@ -34,8 +34,9 @@ class SharedBaseExpression: SharedExpressionProtocol {
             
             /** 
             Matches value other than 1.
+            
             */
-            SharedExpression(identifier: "other", pattern: "exp:(^[^1])|(^\\d{2,})")
+            SharedExpression(identifier: "other-do-not-remove", pattern: "exp:(^[^1])|(^\\d{2,})")
         ]
     }
 }
