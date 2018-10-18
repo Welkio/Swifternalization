@@ -34,7 +34,10 @@ class SharedBaseExpression: SharedExpressionProtocol {
             
             /** 
             Matches value other than 1.
-            
+            */
+            /**
+             Swifternalization internally uses this identifier to match expressions, however, this conflicts with the string translation files we use to localize our strings because we use the key "other" within our JSON language files. This is only an issue on Xcode 10+.
+             Make sure you do not use this identifier key within any language JSON files
             */
             SharedExpression(identifier: "other-do-not-remove", pattern: "exp:(^[^1])|(^\\d{2,})")
         ]
